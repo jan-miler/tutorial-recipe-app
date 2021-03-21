@@ -1,4 +1,5 @@
 import { useState } from "react";
+import s from "./SearchBar.module.css";
 
 const SearchBar = ({ updateQuery }) => {
   const [search, setSearch] = useState("");
@@ -15,14 +16,14 @@ const SearchBar = ({ updateQuery }) => {
 
   return (
     <>
-      <form className="search-form" onSubmit={handleSubmit}>
+      <form className={s.form} onSubmit={handleSubmit}>
         <input
-          className="search-bar"
+          className={s.bar}
           value={search}
           onChange={updateSearch}
           type="text"
         />
-        <button type="submit" className="search-button">
+        <button type="submit" className={s.button}>
           Search
         </button>
       </form>

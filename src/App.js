@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./App.css";
+import s from "./App.module.css";
 
 import Recipe from "./components/Recipe";
 import SearchBar from "./components/SearchBar";
@@ -28,18 +28,24 @@ const App = () => {
   };
 
   return (
-    <div className="App">
+    <div className={s.App}>
+      <h1 className={s.header}>Recipe App</h1>
+
       <SearchBar updateQuery={updateQuery} />
-      <div className="recipes">
-        {recipes.map(recipe => (
-          <Recipe
-            key={recipe.recipe.label}
-            title={recipe.recipe.label}
-            calories={recipe.recipe.calories}
-            image={recipe.recipe.image}
-            ingredients={recipe.recipe.ingredients}
-          />
-        ))}
+
+      <div className={s.recipes}>
+        {recipes.length ? (
+          recipes.map(recipe => (
+            <Recipe
+              key={recipe.recipe.label}
+              title={recipe.recipe.label}
+              image={recipe.recipe.image}
+              ingredients={recipe.recipe.ingredients}
+            />
+          ))
+        ) : (
+          <p>We did not find any recipes</p>
+        )}
       </div>
     </div>
   );

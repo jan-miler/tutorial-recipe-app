@@ -1,0 +1,30 @@
+/* :root{
+
+} */
+
+.form {
+  min-height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bar,
+input[type="text"] {
+  width: 50%;
+  border: none;
+  height: 50px;
+  font-size: 2rem;
+  background-color: rgb(253, 229, 233);
+  padding-left: 1rem;
+  border-radius: 10px 0 0 10px;
+}
+
+.button {
+  background-color: lightcoral;
+  border: none;
+  padding: 10px 20px;
+  color: #000;
+  height: 50px;
+  border-radius: 0 10px 10px 0;
+}
