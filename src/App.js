@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 
-import Recipe from "./Recipe";
+import Recipe from "./components/Recipe";
+import SearchBar from "./components/SearchBar";
 
 const App = () => {
   const APP_ID = process.env.REACT_APP_API_ID;
   const APP_KEY = process.env.REACT_APP_API_KEY;
 
   const [recipes, setRecipes] = useState([]);
-  const [search, setSearch] = useState("");
   const [query, setQuery] = useState("chicken");
 
   useEffect(() => {
@@ -23,34 +23,17 @@ const App = () => {
     getRecipes();
   }, [APP_ID, APP_KEY, query]);
 
-  const updateSearch = e => {
-    setSearch(e.target.value);
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    if (search.trim() === "") return;
-    setQuery(search.trim());
+  const updateQuery = query => {
+    setQuery(query);
   };
 
   return (
     <div className="App">
-      <form className="search-form" onSubmit={handleSubmit}>
-        <input
-          className="search-bar"
-          value={search}
-          onChange={updateSearch}
-          type="text"
-        />
-        <button type="submit" className="search-button">
-          Search
-        </button>
-      </form>
-
+      <SearchBar updateQuery={updateQuery} />
       <div className="recipes">
         {recipes.map(recipe => (
           <Recipe
-            key={recipe.recipe.label + recipe.recipe.calories}
+            key={recipe.recipe.label}
             title={recipe.recipe.label}
             calories={recipe.recipe.calories}
             image={recipe.recipe.image}
