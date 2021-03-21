@@ -4,9 +4,8 @@ import "./App.css";
 import Recipe from "./Recipe";
 
 const App = () => {
-  const APP_ID = "";
-
-  const APP_KEY = "";
+  const APP_ID = process.env.REACT_APP_API_ID;
+  const APP_KEY = process.env.REACT_APP_API_KEY;
 
   const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState("");
@@ -22,7 +21,7 @@ const App = () => {
     };
 
     getRecipes();
-  }, [query]);
+  }, [APP_ID, APP_KEY, query]);
 
   const updateSearch = e => {
     setSearch(e.target.value);
@@ -51,7 +50,7 @@ const App = () => {
       <div className="recipes">
         {recipes.map(recipe => (
           <Recipe
-            key={recipe.recipe.label}
+            key={recipe.recipe.label + recipe.recipe.calories}
             title={recipe.recipe.label}
             calories={recipe.recipe.calories}
             image={recipe.recipe.image}
