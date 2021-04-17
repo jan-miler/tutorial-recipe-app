@@ -21,6 +21,9 @@ const SearchBar = ({ updateQuery }) => {
           className={s.bar}
           value={search}
           onChange={updateSearch}
+          maxLength="30"
+          minLength="3"
+          placeholder="Search..."
           type="text"
         />
         <button type="submit" className={s.button}>
